@@ -4,5 +4,5 @@
 Sample tic-tac-toe game programme
 
 ### 📚 Knowlodges
- - Java
+ - Java 22
  - Maven
