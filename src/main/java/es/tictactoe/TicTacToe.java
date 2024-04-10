@@ -6,7 +6,6 @@ import lombok.Setter;
 import java.util.Scanner;
 
 
-
 @Getter
 @Setter
 public class TicTacToe {
@@ -27,12 +26,12 @@ public class TicTacToe {
                 board[i][j] = noPlayer;
             }
         }
-        System.out.println("Tablero inicializado");
         printBoard();
+        System.out.println("Tablero inicializado");
     }
 
 
-    public void printBoard() {
+    private void printBoard() {
         System.out.println("-------------");
         for (int i = 0; i < size; i++) {
             System.out.print("| ");
@@ -62,15 +61,16 @@ public class TicTacToe {
     public boolean isBoardFull() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-               if( board[i][j] == noPlayer){
-                   return false;
-               }
+                if (board[i][j] == noPlayer) {
+                    return false;
+                }
             }
         }
         return true;
     }
+
     public boolean move(char player, int row, int col) {
-        if((row >= 0 && row < size && col >=0 && col <size) && board[row][col] == noPlayer) {
+        if ((row >= 0 && row < size && col >= 0 && col < size) && board[row][col] == noPlayer) {
             board[row][col] = player;
             return true;
         }
@@ -83,27 +83,29 @@ public class TicTacToe {
         currentPlayer = (player1 == currentPlayer) ? player2 : player1;
     }
 
-    public void doGame(){
+    public void doGame() {
         Scanner scanner = new Scanner(System.in);
 
-        while (true){
+        boolean playing = true;
+        do {
             System.out.print("Player " + currentPlayer + ", enter your move (row[1-" + size + "] col[1-" + size + "]): ");
             int row = scanner.nextInt() - 1;
             int col = scanner.nextInt() - 1;
-            boolean hasMoved = move(currentPlayer,row,col);
+            boolean hasMoved = move(currentPlayer, row, col);
             printBoard();
 
-            if(isWinner(currentPlayer)) {
+            if (isWinner(currentPlayer)) {
                 System.out.println("Player " + currentPlayer + " wins!");
-                break;
+                playing = false;
             }
-            if(isBoardFull()){
+            if (isBoardFull()) {
                 System.out.println("It's a draw!");
-                break;
+                playing = false;
             }
-            if(hasMoved) {
+            if (hasMoved) {
                 swapPlayer();
             }
-        }
+        } while (playing);
     }
+
 }

@@ -232,7 +232,6 @@ class TicTacToeTest {
         TicTacToe ticTacToe = new TicTacToe();
         char[][] board = {{'-','-','-'},{'-','X','-'},{'-','-','-'}};
         ticTacToe.setBoard(board);
-        Random rand = new Random();
         int row = 1, col = 1;
         char currentPlayer = 'X';
         boolean correct = ticTacToe.move(currentPlayer,row,col);
